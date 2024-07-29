@@ -1,0 +1,146 @@
+[
+    {
+        "title": "Series 1",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/260700/logo/1280x720/landscape_original_poster_596984001715677643.png",
+        "episodeCount": 9,
+        "timeAgo": "12h ago",
+        "category": "Thriller",
+        "videoId": "vid001"
+    },
+    {
+        "title": "Series 2",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301359/logo/web-logo/web-thumb-1721014831-14.png",
+        "episodeCount": 8,
+        "timeAgo": "15h ago",
+        "category": "Romance",
+        "videoId": "vid002"
+    },
+    {
+        "title": "Series 3",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301212/logo/1280x720/landscape_original_poster_772784001719988277.png",
+        "episodeCount": 12,
+        "timeAgo": "20h ago",
+        "category": "Comedy",
+        "videoId": "vid003"
+    },
+    {
+        "title": "Series 4",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/279258/logo/web-logo/web_thumb_landscape_original_poster_002162001707740017.png",
+        "episodeCount": 10,
+        "timeAgo": "12h ago",
+        "category": "Thriller",
+        "videoId": "vid004"
+    },
+    {
+        "title": "Series 5",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/ugc/50172104/70669664f74a2c5444cb4866e98c1a0d.png",
+        "episodeCount": 55,
+        "timeAgo": "15h ago",
+        "category": "Horror",
+        "videoId": "vid005"
+    },
+    {
+        "title": "Series 6",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301349/logo/web-logo/web-thumb-1720584732-92.png",
+        "episodeCount": 122,
+        "timeAgo": "20h ago",
+        "category": "Comedy",
+        "videoId": "vid006"
+    },
+    {
+        "title": "Series 7",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301354/logo/web-logo/web-thumb-1720703745-24.png",
+        "episodeCount": 10,
+        "timeAgo": "12h ago",
+        "category": "Thriller",
+        "videoId": "vid007"
+    },
+    {
+        "title": "Series 8",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301086/logo/web-logo/web-thumb-1719138568-45.png",
+        "episodeCount": 18,
+        "timeAgo": "15h ago",
+        "category": "Romance",
+        "videoId": "vid008"
+    },
+    {
+        "title": "Series 9",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301096/logo/web-logo/web-thumb-1719138849-86.png",
+        "episodeCount": 14,
+        "timeAgo": "20h ago",
+        "category": "Comedy",
+        "videoId": "vid009"
+    },
+    {
+        "title": "Series 10",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/300880/logo/web-logo/web-thumb-1718480980-52.png",
+        "episodeCount": 88,
+        "timeAgo": "12h ago",
+        "category": "Thriller",
+        "videoId": "vid010"
+    },
+    {
+        "title": "Series 11",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/300858/logo/1280x720/landscape_original_poster_382325001718250443.png",
+        "episodeCount": 87,
+        "timeAgo": "15h ago",
+        "category": "Romance",
+        "videoId": "vid011"
+    },
+    {
+        "title": "Series 12",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/300498/logo/1280x720/landscape_original_poster_661705001718017039.png",
+        "episodeCount": 19,
+        "timeAgo": "20h ago",
+        "category": "Horror",
+        "videoId": "vid012"
+    },
+    {
+        "title": "Series 13",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/300457/logo/web-logo/web-thumb-1717851582-74.png",
+        "episodeCount": 11,
+        "timeAgo": "12h ago",
+        "category": "Thriller",
+        "videoId": "vid013"
+    },
+    {
+        "title": "Series 14",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/300426/logo/1280x720/landscape_original_poster_286995001717659801.png",
+        "episodeCount": 81,
+        "timeAgo": "15h ago",
+        "category": "Romance",
+        "videoId": "vid014"
+    },
+    {
+        "title": "Series 15",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/300376/logo/web-logo/web-thumb-1717482531-31.png",
+        "episodeCount": 25,
+        "timeAgo": "20h ago",
+        "category": "Comedy",
+        "videoId": "vid015"
+    },
+    {
+        "title": "Series 16",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301360/logo/web-logo/web-thumb-1721023541-24.png",
+        "episodeCount": 111,
+        "timeAgo": "12h ago",
+        "category": "Thriller",
+        "videoId": "vid016"
+    },
+    {
+        "title": "Series 17",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301208/logo/1280x720/landscape_original_poster_814577001719490857.png",
+        "episodeCount": 18,
+        "timeAgo": "15h ago",
+        "category": "Romance",
+        "videoId": "vid017"
+    },
+    {
+        "title": "Series 18",
+        "thumbnailUrl": "https://images.toffeelive.com/images/program/301179/logo/web-logo/web-thumb-1719480353-56.png",
+        "episodeCount": 102,
+        "timeAgo": "20h ago",
+        "category": "Horror",
+        "videoId": "vid018"
+    }
+]
