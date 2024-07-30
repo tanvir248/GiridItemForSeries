@@ -65,7 +65,6 @@ struct MoreMenuView: View {
     @ViewBuilder func menuText(_ text: String) -> some View {
         Text(text)
             .font(.footnote)
-            .foregroundColor(.white)
             .bold()
     }
 }

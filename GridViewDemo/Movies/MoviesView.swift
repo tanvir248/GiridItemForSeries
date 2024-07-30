@@ -29,7 +29,7 @@ struct MoviesView: View {
                                     .font(.system(size: 12, weight: .bold))
                                     .background(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(.white,lineWidth: 1)
+                                            .stroke(.gray,lineWidth: 1)
                                             .background(
                                                 viewModel.selectedCategory == category ? Color.secondary : Color.clear
                                             ).cornerRadius(20)
@@ -72,7 +72,6 @@ struct MoviesCardView: View {
                 HStack {
                     Text(movies.title)
                         .font(.system(size: 14,weight: .bold))
-                        .foregroundColor(.white)
                         .lineLimit(1)
                     Spacer()
                     Button {
