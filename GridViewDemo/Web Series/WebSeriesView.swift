@@ -50,14 +50,14 @@ struct WebSeriesView: View {
                         }
                         .padding(.bottom, 10)
                         .padding(.leading, 10)
-//                        .overlay(
-//                            colorx
-//                                .onTapGesture {
-//                                    colorx = Color.clear
-//                                    videoID = ""
-//                                    showMenu = false
-//                                }
-//                        )
+                        //                        .overlay(
+                        //                            colorx
+                        //                                .onTapGesture {
+                        //                                    colorx = Color.clear
+                        //                                    videoID = ""
+                        //                                    showMenu = false
+                        //                                }
+                        //                        )
                         
                     }.simultaneousGesture(
                         DragGesture().onChanged { value in
@@ -78,14 +78,26 @@ struct WebSeriesView: View {
                                             }
                                         }
                                     if showMenu, videoIDArray[series.videoId] == true {
-                                        MoreMenuView(videoId: series.videoId){
+                                        MoreMenuView(videoId: series.videoId, options: [.addToFavorites, .addToPlayLists, .share, .report]){ action in
                                             bgColor = Color.clear
                                             videoID = ""
                                             showMenu = false
+                                            switch action {
+                                            case .addToFavoritesTapped:
+                                                print("add to favorites tapped")
+                                            case .addToPlayListsTapped:
+                                                print("add to playlists tapped")
+                                            case .shareTapped:
+                                                print("share tapped")
+                                            case .reportTapped:
+                                                print("report Tapped")
+                                            case .none:
+                                                print("Empty view")
+                                            }
                                         }.padding(.horizontal)
                                     }
                                 }
-
+                                
                             }
                         }
                     }.simultaneousGesture(
@@ -111,12 +123,12 @@ struct WebSeriesView: View {
                 updateVideoIDArray()
             }
             .background(
-                bgColor.edgesIgnoringSafeArea(.all)
-                .onTapGesture {
-                    bgColor = Color.clear
-                    videoID = ""
-                    showMenu = false
-                }
+                bgColor.edgesIgnoringSafeArea(.bottom)
+                    .onTapGesture {
+                        bgColor = Color.clear
+                        videoID = ""
+                        showMenu = false
+                    }
             )
             .onChange(of: videoID) { newValue in
                 if showMenu && !videoID.isEmpty{
@@ -238,57 +250,8 @@ struct WebSeriesCardView: View {
 struct WebSeriesCardView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        //        WebSeriesCardView(series: WebSeries(title: "Series 1", thumbnailUrl: "https://via.placeholder.com/150", episodeCount: 10, timeAgo: "12h ago", category: .thriller))
-        //            .previewLayout(.sizeThatFits)
-        //            .padding()
     }
 }
 
 
-
-/*
- Image("more-dot")
- .frame(width: 5, height: 10)
- .padding(.trailing, 10)
- .contextMenu {
- Button {
- print("Change country setting")
- } label: {
- Label("Choose Country", systemImage: "globe")
- }
- 
- Button {
- print("Enable geolocation")
- } label: {
- Label("Detect Location", systemImage: "location.circle")
- }
- }
- */
-//                    Menu {
-//                        Button {
-//                            print("Change country setting")
-//                        } label: {
-//                            Text("Add to Playlists")
-//                        }
-//
-//                        Button {
-//                            print("Enable geolocation")
-//                        } label: {
-//                           Text("Share")
-//                        }
-//
-//                        Button {
-//                            print("Enable geolocation")
-//                        } label: {
-//                           Text("Report")
-//                        }
-//
-//                    } label: {
-struct ViewOffsetKey: PreferenceKey {
-    static var defaultValue: CGPoint = .zero
-
-    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
-        value = nextValue()
-    }
-}
 
