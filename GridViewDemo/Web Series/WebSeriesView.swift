@@ -12,105 +12,89 @@ struct WebSeriesView: View {
     @State private var videoIDArray: [String : Bool] = [:]
     @State private var showMenu: Bool = false
     @State private var videoID: String = ""
-
+    @State private var bgColor: Color = Color.clear
     var body: some View {
         NavigationView {
             ZStack {
                 VStack {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            ZStack {
-                                HStack {
-                                    ForEach(Category.allCases) { category in
-                                        Button(action: {
-                                            viewModel.selectedCategory = category
-                                            viewModel.filterWebSeries()
-                                            videoIDArray = [:]
-                                            updateVideoIDArray()
-                                            videoID = ""
-                                            withAnimation {
-                                                showMenu = false
-                                            }
-                                            
-                                        }) {
-                                            Text(category.rawValue)
-                                                .padding(10)
-                                                .padding(.horizontal, 10)
-                                                .foregroundColor(.primary)
-                                                .font(.system(size: 12, weight: .bold))
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(.white,lineWidth: 1)
-                                                        .background(
-                                                            viewModel.selectedCategory == category ? Color.secondary : Color.clear
-                                                        ).cornerRadius(20)
-                                                )
-                                            
-                                        }
-                                    }
-                                }
-                                .padding(.bottom, 10)
-                                .padding(.leading, 10)
-                                if showMenu {
-                                    Color.black.opacity(0.5)
-                                        .padding(.vertical, -10)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                showMenu = false
-                                            }
-                                        }.frame(height: 44)
-                                        
-                                }
-                            }
-                        }.simultaneousGesture(
-                            DragGesture().onChanged { value in
-                                withAnimation {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(Category.allCases) { category in
+                                Button(action: {
+                                    viewModel.selectedCategory = category
+                                    viewModel.filterWebSeries()
+                                    videoIDArray = [:]
+                                    updateVideoIDArray()
                                     videoID = ""
-                                    showMenu = false
+                                    withAnimation {
+                                        bgColor = Color.clear
+                                        showMenu = false
+                                    }
+                                    
+                                }) {
+                                    Text(category.rawValue)
+                                        .padding(10)
+                                        .padding(.horizontal, 10)
+                                        .foregroundColor(.primary)
+                                        .font(.system(size: 12, weight: .bold))
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(.gray.opacity(0.3),lineWidth: 2)
+                                                .background(
+                                                    viewModel.selectedCategory == category ? Color.secondary : Color.clear
+                                                ).cornerRadius(20)
+                                        )
+                                    
                                 }
                             }
-                         )
-                    
+                        }
+                        .padding(.bottom, 10)
+                        .padding(.leading, 10)
+//                        .overlay(
+//                            colorx
+//                                .onTapGesture {
+//                                    colorx = Color.clear
+//                                    videoID = ""
+//                                    showMenu = false
+//                                }
+//                        )
+                        
+                    }.simultaneousGesture(
+                        DragGesture().onChanged { value in
+                            bgColor = Color.clear
+                            videoID = ""
+                            showMenu = false
+                        }
+                    )
                     ScrollView(showsIndicators: true){
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
                             ForEach(viewModel.filteredWebSeriesList) { series in
                                 ZStack(alignment: .bottomTrailing){
-                                    WebSeriesCardView(series: series, showMenu: $showMenu, videoID: $videoID)
+                                    WebSeriesCardView(series: series, showMenu: $showMenu, videoID: $videoID, bgColor: $bgColor)
                                         .padding(.horizontal, 2)
                                         .onAppear {
                                             if series == viewModel.filteredWebSeriesList.last {
                                                 viewModel.fetchWebSeries()
                                             }
                                         }
-                                    if showMenu{
-                                        Color.black.opacity(0.5)
-                                            .padding(.horizontal, -4)
-                                            .padding(.vertical, -10)
-                                            .onTapGesture {
-                                                withAnimation(.spring){
-                                                    videoID = ""
-                                                    showMenu = false
-                                                }
-                                            }
-                                    }
                                     if showMenu, videoIDArray[series.videoId] == true {
                                         MoreMenuView(videoId: series.videoId){
-                                            withAnimation {
-                                                videoID = ""
-                                                showMenu = false
-                                            }
+                                            bgColor = Color.clear
+                                            videoID = ""
+                                            showMenu = false
                                         }.padding(.horizontal)
                                     }
                                 }
+
                             }
                         }
                     }.simultaneousGesture(
                         DragGesture().onChanged { value in
-                            withAnimation {
-                                videoID = ""
-                                showMenu = false
-                            }
+                            bgColor = Color.clear
+                            videoID = ""
+                            showMenu = false
                         }
-                     )
+                    )
                     .navigationBarItems(trailing:
                                             HStack {
                         
@@ -121,16 +105,24 @@ struct WebSeriesView: View {
                     )
                 }
             }.onAppear {
+                print(" appeared")
+                bgColor = Color.clear
                 showMenu = false
                 updateVideoIDArray()
             }
+            .background(
+                bgColor.edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    bgColor = Color.clear
+                    videoID = ""
+                    showMenu = false
+                }
+            )
             .onChange(of: videoID) { newValue in
                 if showMenu && !videoID.isEmpty{
                     updateVideoIDArray(newValue)
                 }
             }
-
-
         }
     }
     func updateVideoIDArray(_ videoID: String? = ""){
@@ -150,6 +142,7 @@ struct WebSeriesCardView: View {
     @Namespace private var namespace
     @Binding var showMenu: Bool
     @Binding var videoID: String
+    @Binding var bgColor: Color
     var body: some View {
         ZStack(alignment: .bottomTrailing){
             VStack(alignment: .leading, spacing: 5) {
@@ -179,19 +172,28 @@ struct WebSeriesCardView: View {
                                 }
                             )
                     }
-                }.onTapGesture {
-                    videoID = ""
-                    withAnimation {
-                        showMenu = false
+                    if showMenu {
+                        Color("shadowColor").opacity(0.6)
+                    }else {
+                        Color.clear
                     }
+                }.onTapGesture {
+                    bgColor = Color.clear
+                    videoID = ""
+                    showMenu = false
                 }
-
+                
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         Text(series.title)
                             .font(.system(size: 14,weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                             .lineLimit(1)
+                            .onTapGesture {
+                                bgColor = Color.clear
+                                videoID = ""
+                                showMenu = false
+                            }
                         Spacer()
                         Image("more-dot")
                             .frame(width: 5, height: 10)
@@ -203,10 +205,11 @@ struct WebSeriesCardView: View {
                                     withAnimation {
                                         showMenu = false
                                     }
-
+                                    
                                 }else {
                                     videoID = series.videoId
                                     withAnimation {
+                                        bgColor = Color("shadowColor").opacity(0.6)
                                         showMenu = true
                                     }
                                 }
@@ -221,6 +224,10 @@ struct WebSeriesCardView: View {
                         Text(series.timeAgo)
                             .font(.footnote)
                             .foregroundColor(.gray)
+                    }.onTapGesture {
+                        bgColor = Color.clear
+                        videoID = ""
+                        showMenu = false
                     }
                 }
             }
@@ -277,3 +284,11 @@ struct WebSeriesCardView_Previews: PreviewProvider {
 //                        }
 //
 //                    } label: {
+struct ViewOffsetKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
+        value = nextValue()
+    }
+}
+
