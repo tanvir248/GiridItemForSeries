@@ -50,15 +50,6 @@ struct WebSeriesView: View {
                         }
                         .padding(.bottom, 10)
                         .padding(.leading, 10)
-                        //                        .overlay(
-                        //                            colorx
-                        //                                .onTapGesture {
-                        //                                    colorx = Color.clear
-                        //                                    videoID = ""
-                        //                                    showMenu = false
-                        //                                }
-                        //                        )
-                        
                     }.simultaneousGesture(
                         DragGesture().onChanged { value in
                             bgColor = Color.clear
@@ -74,7 +65,7 @@ struct WebSeriesView: View {
                                         .padding(.horizontal, 2)
                                         .onAppear {
                                             if series == viewModel.filteredWebSeriesList.last {
-                                                viewModel.fetchWebSeries()
+                                                viewModel.loadData()
                                             }
                                         }
                                     if showMenu, videoIDArray[series.videoId] == true {

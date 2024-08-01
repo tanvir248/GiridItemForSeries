@@ -35,6 +35,7 @@ struct WebSeriesCardView: View {
                             Image("webSeriesPlaylist")
                             Text("\(series.episodeCount) Episodes")
                                 .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.white)
                             Spacer()
                         }.padding(.horizontal, 5)
                             .background(

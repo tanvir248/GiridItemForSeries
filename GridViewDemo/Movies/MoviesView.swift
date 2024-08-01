@@ -48,7 +48,7 @@ struct MoviesView: View {
                             MoviesCardView(movies:movies)
                                 .onAppear {
                                     if movies == viewModel.filteredWebMoviesList.last {
-                                        viewModel.fetchWebSeries()
+                                        viewModel.loadDummyData()
                                     }
                                 }
                             

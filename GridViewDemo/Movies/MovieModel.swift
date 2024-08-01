@@ -36,3 +36,16 @@ struct MoviesData: Identifiable, Codable, Equatable {
         return lhs.id == rhs.id
     }
 }
+
+struct Todo: Decodable {
+    let id: Int
+    let title: String
+    let completed: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case completed
+    }
+    
+}
